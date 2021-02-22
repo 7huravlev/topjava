@@ -8,10 +8,14 @@ import ru.javawebinar.topjava.repository.UserRepository;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
 public class InMemoryUserRepository implements UserRepository {
     private static final Logger log = LoggerFactory.getLogger(InMemoryUserRepository.class);
+
+    private final Map<Integer, User> repository = new ConcurrentHashMap<>();
 
     @Override
     public boolean delete(int id) {
